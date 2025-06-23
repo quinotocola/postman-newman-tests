@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "44d64054-1d23-4f20-a517-b59b34b18cc7",
+		"name": "testUsers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45974630"
+	},
+	"item": [
+		{
+			"name": "getusers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check ID of first User\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response[0].id).to.eql(1)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check if everyone has IDs\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    for(i=0;i<response.length;i++){\r",
+							"        pm.expect(response[i].id).to.eql(i+1)\r",
+							"    }\r",
+							"})\r",
+							"//esquema\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlAPI}}/users",
+					"host": [
+						"{{urlAPI}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET 'https://fakestoreapi.com/users'"
+			},
+			"response": []
+		},
+		{
+			"name": "https://fakestoreapi.com/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check ID\", function() {\r",
+							"    const response = pm.response.json();\r",
+							"    //pm.expect(response.id).to.exist;\r",
+							"    pm.expect(response.id).to.be.a('number');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"john_doe\", \"email\": \"johndoe@email.com\", \"password\": \"pass123\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlAPI}}/users",
+					"host": [
+						"{{urlAPI}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST 'https://fakestoreapi.com/users' -H 'Content-Type: application/json' -d '{\"username\": \"john_doe\", \"email\": \"john@example.com\", \"password\": \"pass123\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "https://fakestoreapi.com/users/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check ID\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.id).to.eql(1)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check Name\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.name.firstname).to.eql(\"john\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlAPI}}/users/1",
+					"host": [
+						"{{urlAPI}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET 'https://fakestoreapi.com/users/1'"
+			},
+			"response": []
+		},
+		{
+			"name": "https://fakestoreapi.com/users/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Update in userName\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.username).to.eql(\"quino\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"quino\", \"email\": \"john.updated@example.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlAPI}}/users/1",
+					"host": [
+						"{{urlAPI}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": "Generated from cURL: curl -X PUT 'https://fakestoreapi.com/users/1' -H 'Content-Type: application/json' -d '{\"username\": \"john_doe_updated\", \"email\": \"john.updated@example.com\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "https://fakestoreapi.com/users/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if was Deleted\", function(){\r",
+							"    var response = pm.response.json();\r",
+							"    pm.expect(response.id).to.eql(1)\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{urlAPI}}/users/1",
+					"host": [
+						"{{urlAPI}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				},
+				"description": "Generated from cURL: curl -X DELETE 'https://fakestoreapi.com/users/1'"
+			},
+			"response": []
+		}
+	]
+}
