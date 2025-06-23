@@ -1,0 +1,25 @@
+name: Run Postman Tests with Newman
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Cada día a las 00:00 UTC
+  workflow_dispatch:      # Permite ejecutarlo manualmente también
+
+jobs:
+  run-newman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run collection with Newman
+        run: newman run mi-coleccion.json
