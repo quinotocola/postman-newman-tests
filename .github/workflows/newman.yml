@@ -22,4 +22,4 @@ jobs:
         run: npm install -g newman
 
       - name: Run collection with Newman
-        run: newman run mi-coleccion.json
+        run: newman run testUsers.postman_collection.json -e environment.postman_environment.json
