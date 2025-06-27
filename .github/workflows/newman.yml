@@ -1,8 +1,7 @@
 name: Run Postman Tests with Newman
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Cada día a las 00:00 UTC
+  push: 
   workflow_dispatch:      # Permite ejecutarlo manualmente también
 
 jobs:
